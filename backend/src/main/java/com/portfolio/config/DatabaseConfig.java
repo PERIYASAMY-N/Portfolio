@@ -2,26 +2,29 @@ package com.portfolio.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 
 import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 @Configuration
-@Profile("prod")
 public class DatabaseConfig {
 
     @Bean
     @Primary
+    @ConditionalOnProperty(name = "DATABASE_URL")
     public DataSource dataSource() {
         String databaseUrl = System.getenv("DATABASE_URL");
         
+        System.out.println("=== DATABASE CONFIG STARTING ===");
+        System.out.println("DATABASE_URL found: " + (databaseUrl != null));
+        
         if (databaseUrl == null || databaseUrl.isEmpty()) {
+            System.out.println("ERROR: DATABASE_URL is not set!");
             throw new RuntimeException("DATABASE_URL environment variable is not set!");
         }
         
@@ -58,7 +61,11 @@ public class DatabaseConfig {
             return new HikariDataSource(config);
             
         } catch (URISyntaxException e) {
+            System.out.println("ERROR: Failed to parse DATABASE_URL: " + e.getMessage());
             throw new RuntimeException("Failed to parse DATABASE_URL: " + e.getMessage(), e);
+        } catch (Exception e) {
+            System.out.println("ERROR: Unexpected error: " + e.getMessage());
+            throw new RuntimeException("Failed to configure database: " + e.getMessage(), e);
         }
     }
 }
