@@ -1,0 +1,26 @@
+services:
+  # Backend Spring Boot Application
+  - type: web
+    name: portfolio-backend
+    runtime: java
+    buildCommand: cd backend && mvn clean package -DskipTests
+    startCommand: java -jar backend/target/portfolio-cms-1.0.0.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true
+    healthCheckPath: /actuator/health
+
+databases:
+  - name: portfolio-db
+    databaseName: portfolio_db
+    user: portfolio_user

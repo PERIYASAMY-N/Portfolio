@@ -3,7 +3,8 @@
  * Centralized fetch wrapper for all API calls
  */
 
-const API_BASE = 'http://localhost:8080';
+// Use environment-specific API URL (set in env-config.js)
+const API_BASE = window.API_BASE_URL || 'http://localhost:8080';
 
 const api = {
   /** Get stored JWT token */
