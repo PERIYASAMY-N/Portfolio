@@ -2,7 +2,7 @@ services:
   # Backend Spring Boot Application
   - type: web
     name: portfolio-backend
-    runtime: java
+    env: java
     buildCommand: cd backend && mvn clean package -DskipTests
     startCommand: java -jar backend/target/portfolio-cms-1.0.0.jar
     envVars:
