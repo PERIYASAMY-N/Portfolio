@@ -1,0 +1,55 @@
+# Ignore unnecessary files during Docker build
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+DEPLOYMENT*.md
+QUICK_DEPLOY.md
+START_HERE.md
+
+# Frontend files (not needed for backend)
+frontend/
+
+# Backend build artifacts
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Java/Maven
+*.class
+*.jar
+*.war
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+
+# Temp files
+backend/temp/
+backend/jdk-17.0.11+9/
+backend/jdk.zip
+backend/maven_output.txt
+
+# Uploads
+uploads/
+
+# Test files
+test-photo.jpg
+profile.json
+new-profile.json
