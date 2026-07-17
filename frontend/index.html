@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <meta name="description" content="Professional portfolio of a Full Stack Developer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="dark-mode" id="portfolio-body">
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader">
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <span class="loader-text">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="nav-logo-text">Portfolio</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#certifications" class="nav-link">Certifications</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-particles" id="hero-particles"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-greeting animate-fade-up">👋 Hello, I'm</p>
+        <h1 class="hero-name animate-fade-up" id="hero-name">Loading...</h1>
+        <div class="hero-title-wrapper animate-fade-up">
+          <span class="hero-title-prefix">I'm a </span>
+          <span class="hero-title-typed" id="hero-typed"></span>
+        </div>
+        <p class="hero-bio animate-fade-up" id="hero-bio">Welcome to my portfolio!</p>
+        <div class="hero-social animate-fade-up" id="hero-social"></div>
+        <div class="hero-cta animate-fade-up">
+          <a href="#projects" class="btn btn-primary">
+            <i class="fas fa-folder-open"></i> View Projects
+          </a>
+          <a href="#" id="resume-btn" class="btn btn-outline" download>
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper animate-float">
+        <div class="hero-image-blob">
+          <div class="hero-photo-placeholder" id="hero-photo-placeholder"><i class="fas fa-user"></i></div>
+          <img src="" alt="Profile Photo" class="hero-photo" id="hero-photo" style="display:none;" />
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get To Know</span>
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+        <p class="section-subtitle">My journey, passion, and vision</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-area">
+          <div class="about-image-frame">
+            <img src="" alt="About" class="about-photo" id="about-photo" />
+            <div class="about-image-deco"></div>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card" id="stat-projects">
+              <span class="stat-num">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-card" id="stat-certs">
+              <span class="stat-num">0</span>
+              <span class="stat-label">Certifications</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-content">
+          <h3 class="about-subtitle" id="about-title">Full Stack Developer</h3>
+          <p class="about-bio" id="about-bio">Loading...</p>
+          <div class="about-objective">
+            <h4><i class="fas fa-bullseye"></i> Career Objective</h4>
+            <p id="about-objective">Loading...</p>
+          </div>
+          <div class="about-details" id="about-details"></div>
+          <div class="about-actions">
+            <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> Hire Me</a>
+            <a href="#" id="about-resume-btn" class="btn btn-outline" download><i class="fas fa-download"></i> Resume</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title">My <span class="gradient-text">Skills</span></h2>
+        <p class="section-subtitle">Technologies I work with</p>
+      </div>
+      <div class="skills-filter" id="skills-filter"></div>
+      <div class="skills-grid" id="skills-grid">
+        <div class="loading-placeholder">Loading skills...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">My Work</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="section-subtitle">Things I've built</p>
+      </div>
+      <div class="projects-toolbar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="project-search" placeholder="Search projects..." class="search-input" />
+        </div>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <div class="loading-placeholder">Loading projects...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section experience-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">My Journey</span>
+        <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
+        <p class="section-subtitle">Where I've worked</p>
+      </div>
+      <div class="timeline" id="experience-timeline">
+        <div class="loading-placeholder">Loading experience...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section education-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Academic Background</span>
+        <h2 class="section-title">My <span class="gradient-text">Education</span></h2>
+        <p class="section-subtitle">My learning journey</p>
+      </div>
+      <div class="timeline" id="education-timeline">
+        <div class="loading-placeholder">Loading education...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section certs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Credentials</span>
+        <h2 class="section-title">My <span class="gradient-text">Certifications</span></h2>
+        <p class="section-subtitle">Verified achievements</p>
+      </div>
+      <div class="certs-grid" id="certs-grid">
+        <div class="loading-placeholder">Loading certifications...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" class="section achievements-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Milestones</span>
+        <h2 class="section-title">My <span class="gradient-text">Achievements</span></h2>
+        <p class="section-subtitle">Things I'm proud of</p>
+      </div>
+      <div class="achievements-grid" id="achievements-grid">
+        <div class="loading-placeholder">Loading achievements...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact <span class="gradient-text">Me</span></h2>
+        <p class="section-subtitle">Let's work together</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info" id="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div>
+              <h4>Email</h4>
+              <a href="#" id="contact-email">Loading...</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-phone contact-icon"></i>
+            <div>
+              <h4>Phone</h4>
+              <a href="#" id="contact-phone">Loading...</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <div>
+              <h4>Location</h4>
+              <span id="contact-location">Loading...</span>
+            </div>
+          </div>
+          <div class="contact-social" id="contact-social"></div>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="msg-name">Name</label>
+            <input type="text" id="msg-name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="msg-email">Email</label>
+            <input type="email" id="msg-email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="msg-subject">Subject</label>
+            <input type="text" id="msg-subject" placeholder="What's this about?" />
+          </div>
+          <div class="form-group">
+            <label for="msg-body">Message</label>
+            <textarea id="msg-body" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="contact-submit">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div class="form-feedback" id="form-feedback"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text" id="footer-name">Portfolio</p>
+        <p class="footer-copy">© <span id="footer-year"></span> All rights reserved. Built with ❤️</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="project-modal">
+      <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
