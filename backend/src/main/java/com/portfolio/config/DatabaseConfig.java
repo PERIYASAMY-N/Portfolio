@@ -1,7 +1,7 @@
 package com.portfolio.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -15,7 +15,6 @@ public class DatabaseConfig {
 
     @Bean
     @Primary
-    @ConfigurationProperties("spring.datasource")
     public DataSource dataSource() {
         String databaseUrl = System.getenv("DATABASE_URL");
         
@@ -36,10 +35,11 @@ public class DatabaseConfig {
         System.out.println("Final JDBC URL: " + databaseUrl);
         System.out.println("=== END DATABASE CONFIG ===");
         
-        return DataSourceBuilder
-                .create()
-                .url(databaseUrl)
-                .driverClassName("org.postgresql.Driver")
-                .build();
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(databaseUrl);
+        config.setDriverClassName("org.postgresql.Driver");
+        config.setMaximumPoolSize(5);
+        
+        return new HikariDataSource(config);
     }
 }
