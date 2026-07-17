@@ -7,7 +7,7 @@
 const getApiBaseUrl = () => {
   // Check if we're in production (Vercel deployment)
   if (window.location.hostname.includes('vercel.app')) {
-    return 'https://your-render-app.onrender.com';
+    return 'https://portfolio-backend-6dd2.onrender.com';
   }
   
   // Local development
