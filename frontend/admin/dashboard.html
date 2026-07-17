@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Portfolio CMS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">Portfolio CMS</div>
+      <nav class="sidebar-nav" id="sidebar-nav">
+        <a href="#v-dashboard" class="nav-item active" data-target="v-dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#v-profile" class="nav-item" data-target="v-profile"><i class="fas fa-user-circle"></i> Profile</a>
+        <a href="#v-skills" class="nav-item" data-target="v-skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#v-projects" class="nav-item" data-target="v-projects"><i class="fas fa-folder-open"></i> Projects</a>
+        <a href="#v-experience" class="nav-item" data-target="v-experience"><i class="fas fa-briefcase"></i> Experience</a>
+        <a href="#v-education" class="nav-item" data-target="v-education"><i class="fas fa-graduation-cap"></i> Education</a>
+        <a href="#v-certifications" class="nav-item" data-target="v-certifications"><i class="fas fa-certificate"></i> Certifications</a>
+        <a href="#v-achievements" class="nav-item" data-target="v-achievements"><i class="fas fa-trophy"></i> Achievements</a>
+        <a href="#v-resume" class="nav-item" data-target="v-resume"><i class="fas fa-file-pdf"></i> Resume</a>
+        <a href="#v-media" class="nav-item" data-target="v-media"><i class="fas fa-images"></i> Media Library</a>
+        <a href="#v-messages" class="nav-item" data-target="v-messages"><i class="fas fa-envelope"></i> Messages <span id="unread-badge" class="badge badge-warning" style="display:none; margin-left:auto;">0</span></a>
+        <a href="#v-settings" class="nav-item" data-target="v-settings"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-title" id="topbar-title">Dashboard</div>
+        <div class="user-menu">
+          <a href="../index.html" target="_blank" class="btn btn-outline" style="padding: 6px 12px; font-size:0.8rem;"><i class="fas fa-external-link-alt"></i> View Site</a>
+          <button class="btn btn-danger" style="padding: 6px 12px; font-size:0.8rem;" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        
+        <!-- DASHBOARD VIEW -->
+        <div id="v-dashboard" class="view-section active">
+          <div class="section-header">
+            <h2>Overview</h2>
+          </div>
+          <div class="stats-grid" id="dashboard-stats">
+            <!-- Populated by JS -->
+            Loading stats...
+          </div>
+        </div>
+
+        <!-- PROFILE VIEW -->
+        <div id="v-profile" class="view-section">
+          <div class="section-header">
+            <h2>Manage Profile</h2>
+            <button class="btn btn-primary" onclick="vProfile.save()"><i class="fas fa-save"></i> Save Changes</button>
+          </div>
+          <div class="card">
+            <form id="profile-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" id="p-name" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Professional Title</label>
+                  <input type="text" id="p-title" class="form-control">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" id="p-email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone</label>
+                  <input type="text" id="p-phone" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Location</label>
+                <input type="text" id="p-location" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Bio</label>
+                <textarea id="p-bio" class="form-control" rows="4"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Career Objective</label>
+                <textarea id="p-objective" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Profile Photo</label>
+                  <input type="hidden" id="p-photo" class="form-control">
+                  <input type="file" id="p-photo-file" accept="image/*" class="form-control" onchange="document.getElementById('p-photo-preview').src=window.URL.createObjectURL(this.files[0]);document.getElementById('p-photo-preview').style.display='block';">
+                  <img id="p-photo-preview" style="max-height: 100px; display: none; margin-top: 10px;" />
+                  <button type="button" class="btn btn-outline" style="margin-top: 10px;" onclick="vProfile.uploadImage('photo')">Upload Profile Photo</button>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Hero Background Image</label>
+                  <input type="hidden" id="p-hero" class="form-control">
+                  <input type="file" id="p-hero-file" accept="image/*" class="form-control" onchange="document.getElementById('p-hero-preview').src=window.URL.createObjectURL(this.files[0]);document.getElementById('p-hero-preview').style.display='block';">
+                  <img id="p-hero-preview" style="max-height: 100px; display: none; margin-top: 10px;" />
+                  <button type="button" class="btn btn-outline" style="margin-top: 10px;" onclick="vProfile.uploadImage('hero')">Upload Hero Image</button>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div style="margin-top: 32px;">
+                <div class="section-header" style="margin-bottom:16px;">
+                  <h3 style="font-size:1.1rem;">Social Links</h3>
+                  <button type="button" class="btn btn-outline" onclick="vProfile.addSocial()"><i class="fas fa-plus"></i> Add Link</button>
+                </div>
+                <table class="table">
+                  <thead><tr><th>Platform</th><th>Icon (FontAwesome class)</th><th>URL</th><th>Action</th></tr></thead>
+                  <tbody id="p-social-table"></tbody>
+                </table>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- SKILLS VIEW -->
+        <div id="v-skills" class="view-section">
+          <div class="section-header">
+            <h2>Manage Skills</h2>
+            <button class="btn btn-primary" onclick="vSkills.openModal()"><i class="fas fa-plus"></i> Add Skill</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead><tr><th>Category</th><th>Name</th><th>Percentage</th><th>Icon</th><th>Sort</th><th>Actions</th></tr></thead>
+              <tbody id="skills-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PROJECTS VIEW -->
+        <div id="v-projects" class="view-section">
+          <div class="section-header">
+            <h2>Manage Projects</h2>
+            <button class="btn btn-primary" onclick="vProjects.openModal()"><i class="fas fa-plus"></i> Add Project</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead><tr><th>Featured</th><th>Title</th><th>Date</th><th>Links</th><th>Actions</th></tr></thead>
+              <tbody id="projects-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE VIEW -->
+        <div id="v-experience" class="view-section">
+          <div class="section-header">
+            <h2>Manage Experience</h2>
+            <button class="btn btn-primary" onclick="vExperience.openModal()"><i class="fas fa-plus"></i> Add Experience</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead><tr><th>Company</th><th>Role</th><th>Type</th><th>Duration</th><th>Actions</th></tr></thead>
+              <tbody id="exp-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- EDUCATION VIEW -->
+        <div id="v-education" class="view-section">
+          <div class="section-header">
+            <h2>Manage Education</h2>
+            <button class="btn btn-primary" onclick="vEducation.openModal()"><i class="fas fa-plus"></i> Add Education</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead><tr><th>Institution</th><th>Degree</th><th>Duration</th><th>Grade</th><th>Actions</th></tr></thead>
+              <tbody id="edu-table"></tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- CERTIFICATIONS VIEW -->
+        <div id="v-certifications" class="view-section">
+          <div class="section-header">
+            <h2>Manage Certifications</h2>
+            <button class="btn btn-primary" onclick="vCerts.openModal()"><i class="fas fa-plus"></i> Add Cert</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead><tr><th>Title</th><th>Organization</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="certs-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ACHIEVEMENTS VIEW -->
+        <div id="v-achievements" class="view-section">
+          <div class="section-header">
+            <h2>Manage Achievements</h2>
+            <button class="btn btn-primary" onclick="vAchieve.openModal()"><i class="fas fa-plus"></i> Add Achievement</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="achieve-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- RESUME VIEW -->
+        <div id="v-resume" class="view-section">
+          <div class="section-header">
+            <h2>Resume Management</h2>
+          </div>
+          <div class="form-row">
+            <div class="card">
+              <h3>Upload New Resume</h3>
+              <p style="color:var(--admin-text-light); margin-bottom:16px;">PDF format only. Uploading a new resume makes it active.</p>
+              <form id="resume-upload-form">
+                <input type="file" id="resume-file" accept="application/pdf" class="form-control" style="margin-bottom:16px;" required>
+                <button type="submit" class="btn btn-primary">Upload</button>
+              </form>
+            </div>
+          </div>
+          <div class="card" style="margin-top: 24px;">
+            <h3>Resume History</h3>
+            <table class="table">
+              <thead><tr><th>Version</th><th>File Name</th><th>Uploaded Date</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="resume-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- MEDIA LIBRARY VIEW -->
+        <div id="v-media" class="view-section">
+          <div class="section-header">
+            <h2>Media Library</h2>
+            <form id="media-upload-form" style="display:flex; gap:10px;">
+              <select id="media-category" class="form-control" style="width:120px; padding:6px;">
+                <option value="general">General</option>
+                <option value="project">Project</option>
+                <option value="certificate">Certificate</option>
+              </select>
+              <input type="file" id="media-file" class="form-control" style="padding:4px;" required accept="image/*">
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+          </div>
+          <div class="card">
+            <div class="media-grid" id="media-grid"></div>
+          </div>
+        </div>
+
+        <!-- MESSAGES VIEW -->
+        <div id="v-messages" class="view-section">
+          <div class="section-header">
+            <h2>Inbox</h2>
+            <div>
+              <button class="btn btn-outline" onclick="vMessages.load(false)">Inbox</button>
+              <button class="btn btn-outline" onclick="vMessages.load(true)">Archived</button>
+            </div>
+          </div>
+          <div class="card" id="messages-container"></div>
+        </div>
+
+        <!-- SETTINGS VIEW -->
+        <div id="v-settings" class="view-section">
+          <div class="section-header">
+            <h2>Site Settings</h2>
+            <button class="btn btn-primary" onclick="vSettings.save()"><i class="fas fa-save"></i> Save Settings</button>
+          </div>
+          <div class="card">
+            <form id="settings-form">
+              <div class="form-group">
+                <label class="form-label">Site Title</label>
+                <input type="text" id="set-title" class="form-control" data-key="site_title">
+              </div>
+              <div class="form-group">
+                <label class="form-label">SEO Meta Description</label>
+                <textarea id="set-desc" class="form-control" data-key="meta_description"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Primary Theme Color</label>
+                  <input type="color" id="set-color" class="form-control" data-key="theme_color" style="height:45px; padding:2px;">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Default Dark Mode</label>
+                  <select id="set-dark" class="form-control" data-key="dark_mode">
+                    <option value="true">Enabled</option>
+                    <option value="false">Disabled</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- GENERIC MODAL PLACEHOLDER -->
+  <div class="admin-modal" id="admin-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal Title</h3>
+        <button class="btn" style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="ui.closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/api.js"></script>
+  <script src="../js/admin/auth.js"></script>
+  <script src="../js/admin/dashboard.js"></script>
+</body>
+</html>
