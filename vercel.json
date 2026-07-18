@@ -8,6 +8,11 @@
   ],
   "routes": [
     {
+      "src": "/admin(.*)",
+      "status": 404,
+      "dest": "/frontend/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/frontend/$1"
     }
