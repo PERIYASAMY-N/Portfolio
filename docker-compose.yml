@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: portfolio-db
+    environment:
+      POSTGRES_DB: portfolio_db
+      POSTGRES_USER: portfolio_user
+      POSTGRES_PASSWORD: portfolio_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DATABASE_URL: postgres://portfolio_user:portfolio_pass@db:5432/portfolio_db
+      JWT_SECRET: MyPortfolioSuperSecretKey2024LocalDev!@#
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: Admin@123
+      ADMIN_EMAIL: admin@portfolio.com
+      FRONTEND_URL: http://localhost:3000
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
