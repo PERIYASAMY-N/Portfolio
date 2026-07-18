@@ -49,7 +49,7 @@ public class DatabaseConfig {
             String dbName   = matcher.group(5);
 
             String jdbcUrl  = String.format(
-                "jdbc:postgresql://%s:%d/%s?sslmode=require", host, port, dbName
+                "jdbc:postgresql://%s:%d/%s", host, port, dbName
             );
 
             System.out.println("=== DATABASE CONFIG DEBUG ===");
@@ -65,10 +65,16 @@ public class DatabaseConfig {
             config.setUsername(username);
             config.setPassword(password);
             config.setDriverClassName("org.postgresql.Driver");
-            config.setMaximumPoolSize(5);
+            // SSL properties required for Supabase
+            config.addDataSourceProperty("ssl", "true");
+            config.addDataSourceProperty("sslmode", "require");
+            // Pool settings optimized for Supabase free tier
+            config.setMaximumPoolSize(3);
+            config.setMinimumIdle(1);
             config.setConnectionTimeout(30000);
             config.setIdleTimeout(600000);
             config.setMaxLifetime(1800000);
+            config.setKeepaliveTime(60000);
 
             return new HikariDataSource(config);
 
