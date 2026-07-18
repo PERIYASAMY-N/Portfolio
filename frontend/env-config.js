@@ -11,7 +11,7 @@ const getApiBaseUrl = () => {
 
   // Production: Vercel hosted public portfolio
   if (host.includes('vercel.app') || host.includes('onrender.com')) {
-    return 'https://portfolio-backend-6dd2.onrender.com';
+    return 'https://portfolio-backend.onrender.com'; // ← replace with your actual Render URL
   }
 
   // Local development (public portfolio or admin)
